@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Dashboard Administrativo</title>
+
+        <!--Separando links para melhor organização-->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+            rel="stylesheet"
+        />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
+
+        <!--Adicionando o link do CSS -->
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+
+    <body>
+        <div class="grid-container">
+            <header class="header">
+    <div class="header-left">
+        <div class="menu-icon" onclick="openSidebar()">
+            <span class="material-icons-outlined">menu</span>
+        </div>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Ativar modo claro">
+            <span class="material-icons-outlined">light_mode</span>
+        </button>
+    </div>
+    <div class="header-right">
+        <span class="material-icons-outlined">notifications_active</span>
+        <span class="material-icons-outlined">mark_email_unread</span>
+        <span class="material-icons-outlined">account_circle</span>
+    </div>
+</header>
+
+            <aside id="sidebar">
+                <div class="sidebar-title">
+                    <div class="sidebar-brand">
+                        <span style="color: #30a2a0" class="material-icons-outlined">shopping_bag</span>
+                        <span style="color: #0a8f8d">TECHZONE</span>
+                    </div>
+                    <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
+                </div>
+
+                <ul class="sidebar-list">
+                    <li class="sidebar-list-item">
+                        <span style="color: #30a2a0" class="material-icons-outlined">dashboard</span> Dashboard
+                    </li>
+                    <li class="sidebar-list-item">
+                        <span style="color: #30a2a0" class="material-icons-outlined">inventory_2</span> Estoque
+                    </li>
+                    <li class="sidebar-list-item">
+                        <span style="color: #30a2a0" class="material-icons-outlined">category</span> Categorias
+                    </li>
+                    <li class="sidebar-list-item">
+                        <span style="color: #30a2a0" class="material-icons-outlined">fact_check</span> Relatórios
+                    </li>
+                    <li class="sidebar-list-item">
+                        <span style="color: #30a2a0" class="material-icons-outlined">account_balance_wallet</span>
+                        Finanças
+                    </li>
+                    <li class="sidebar-list-item">
+                        <span style="color: #30a2a0" class="material-icons-outlined">settings</span> Configurações
+                    </li>
+                </ul>
+            </aside>
+
+            <main class="main-container">
+                <div class="main-title">
+                    <h2 style="color: #8da6a6">Radar de Vendas</h2>
+                </div>
+
+                <div class="main-cards">
+                    <div class="card">
+                        <div class="card-inner">
+                            <h3>PRODUTOS</h3>
+                            <span class="material-icons-outlined">inventory_2</span>
+                        </div>
+                        <h1>200</h1>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-inner">
+                            <h3>CATEGORIAS</h3>
+                            <span class="material-icons-outlined">category</span>
+                        </div>
+                        <h1>20</h1>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-inner">
+                            <h3>RELATÓRIOS</h3>
+                            <span class="material-icons-outlined">fact_check</span>
+                        </div>
+                        <h1>10</h1>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-inner">
+                            <h3>NOTIFICAÇÕES</h3>
+                            <span class="material-icons-outlined">notifications</span>
+                        </div>
+                        <h1>20</h1>
+                    </div>
+                </div>
+
+                <div class="charts">
+                    <div class="charts-card">
+                        <div id="bar-chart"></div>
+                    </div>
+
+                    <div class="charts-card">
+                        <div id="area-chart"></div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!--Adicionando o script apexcharts -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/7.8.0/apexcharts.min.js"></script>
+        <!--Adicionando o script -->
+        <script src="js/script.js"></script>
+    </body>
+</html>
