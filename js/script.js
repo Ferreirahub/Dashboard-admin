@@ -302,3 +302,86 @@ function handleGoogleCredentialResponse(response) {
         console.log("Dados do Utilizador Google:", userData);
     }
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    const googleLoginBtn = document.getElementById("google-login-btn");
+
+    const usuarioSalvo = localStorage.getItem("techzone_user");
+    if (usuarioSalvo) {
+        try {
+            const user = JSON.parse(usuarioSalvo);
+            atualizarPerfilUsuario(user);
+        } catch (e) {
+            console.error("Erro ao carregar usuário salvo:", e);
+            localStorage.removeItem("techzone_user");
+        }
+    }
+
+    window.onload = function () {
+        if (window.google) {
+            google.accounts.id.initialize({
+                client_id: "21362649986-4dneouu4k8nnu1ep76dgi37urorn2h34.apps.googleusercontent.com",
+                callback: handleGoogleCredentialResponse,
+                auto_select: false,
+                cancel_on_tap_outside: true
+            });
+        }
+    };
+
+    if (googleLoginBtn) {
+        googleLoginBtn.addEventListener("click", () => {
+            if (window.google) {
+                google.accounts.id.prompt((notification) => {
+                    if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+                        console.log("O prompt foi ignorado ou bloqueado:", notification.getNotDisplayedReason());
+
+                        alert("Para o pop-up do Google aparecer, certifique-se de que o seu domínio está autorizado no Google Cloud Console e que não há bloqueadores (como o Brave Shields) a barrar o script.");
+                    }
+                });
+            } else {
+                alert("A biblioteca de autenticação do Google ainda não foi carregada. Verifique a ligação à internet.");
+            }
+        });
+    }
+});
+
+function handleGoogleCredentialResponse(response) {
+    if (response.credential) {
+
+        const base64Url = response.credential.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+
+        const userData = JSON.parse(jsonPayload);
+        
+
+        atualizarPerfilUsuario(userData);
+        localStorage.setItem("techzone_user", JSON.stringify(userData));
+        
+        console.log("Login efetuado com sucesso! Dados:", userData);
+    }
+}
+
+
+function atualizarPerfilUsuario(user) {
+    const loginBtn = document.getElementById("google-login-btn");
+
+    if (loginBtn && user.picture) {
+
+        const userImg = document.createElement("img");
+        userImg.src = user.picture;
+        userImg.alt = user.name || "Perfil";
+        userImg.title = `Conectado como ${user.name} (${user.email})`;
+
+        userImg.style.width = "35px";
+        userImg.style.height = "35px";
+        userImg.style.borderRadius = "50%";
+        userImg.style.objectFit = "cover";
+        userImg.style.cursor = "pointer";
+        userImg.style.border = "2px solid #4f46e5"; 
+
+        loginBtn.parentNode.replaceChild(userImg, loginBtn);
+    }
+}
