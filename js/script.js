@@ -254,3 +254,51 @@ if (configModoEscuro) {
         applyTheme(isLight ? "dark" : "light");
     });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    const googleLoginBtn = document.getElementById("google-login-btn");
+
+    window.onload = function () {
+        if (window.google) {
+            google.accounts.id.initialize({
+                client_id: "213626496986-4dneouu4k8nnu1ep76dgi37urorn2h34.apps.googleusercontent.com", 
+                callback: handleGoogleCredentialResponse,
+                auto_select: false,
+                cancel_on_tap_outside: true
+            });
+        }
+    };
+
+    if (googleLoginBtn) {
+        googleLoginBtn.addEventListener("click", () => {
+            if (window.google) {
+                google.accounts.id.prompt((notification) => {
+                    if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+                        console.log("O prompt foi ignorado ou bloqueado pelo navegador:", notification.getNotDisplayedReason());
+
+                        alert("Para o pop-up do Google aparecer, certifique-se de que o seu domínio (localhost ou GitHub Pages) está autorizado no Google Cloud Console.");
+                    }
+                });
+            } else {
+                alert("A biblioteca de autenticação do Google ainda não foi carregada. Verifique a ligação à internet.");
+            }
+        });
+    }
+});
+
+
+function handleGoogleCredentialResponse(response) {
+    if (response.credential) {
+
+        const base64Url = response.credential.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+
+        const userData = JSON.parse(jsonPayload);
+        alert(`Login efetuado com sucesso!\n\nBem-vindo, ${userData.name}\nEmail: ${userData.email}`);
+
+        console.log("Dados do Utilizador Google:", userData);
+    }
+}

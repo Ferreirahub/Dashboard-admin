@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 
     <!--Adicionando o link do CSS -->
     <link rel="stylesheet" href="css/style.css" />
@@ -29,10 +30,11 @@
                 </button>
             </div>
             <div class="header-right">
-                <span class="material-icons-outlined">notifications_active</span>
-                <span class="material-icons-outlined">mark_email_unread</span>
-                <span class="material-icons-outlined">account_circle</span>
-            </div>
+    <span class="material-icons-outlined">notifications_active</span>
+    <span class="material-icons-outlined">mark_email_unread</span>
+    <!-- Ícone com ID para o clique -->
+    <span id="google-login-btn" class="material-icons-outlined" style="cursor: pointer;" title="Fazer login com o Google">account_circle</span>
+</div>
         </header>
 
         <aside id="sidebar">
