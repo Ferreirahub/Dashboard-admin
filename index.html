@@ -1,127 +1,505 @@
 <!doctype html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Dashboard Administrativo</title>
 
-        <!--Separando links para melhor organização-->
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
-            rel="stylesheet"
-        />
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Administrativo</title>
 
-        <!--Adicionando o link do CSS -->
-        <link rel="stylesheet" href="css/style.css" />
-    </head>
+    <!--Separando links para melhor organização-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
 
-    <body>
-        <div class="grid-container">
-            <header class="header">
-    <div class="header-left">
-        <div class="menu-icon" onclick="openSidebar()">
-            <span class="material-icons-outlined">menu</span>
-        </div>
-        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Ativar modo claro">
-            <span class="material-icons-outlined">light_mode</span>
-        </button>
-    </div>
-    <div class="header-right">
-        <span class="material-icons-outlined">notifications_active</span>
-        <span class="material-icons-outlined">mark_email_unread</span>
-        <span class="material-icons-outlined">account_circle</span>
-    </div>
-</header>
+    <!--Adicionando o link do CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+</head>
 
-            <aside id="sidebar">
-                <div class="sidebar-title">
-                    <div class="sidebar-brand">
-                        <span style="color: #30a2a0" class="material-icons-outlined">shopping_bag</span>
-                        <span style="color: #0a8f8d">TECHZONE</span>
-                    </div>
-                    <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
+<body>
+    <div class="grid-container">
+        <header class="header">
+            <div class="header-left">
+                <div class="menu-icon" onclick="openSidebar()">
+                    <span class="material-icons-outlined">menu</span>
                 </div>
+                <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Ativar modo claro">
+                    <span class="material-icons-outlined">light_mode</span>
+                </button>
+            </div>
+            <div class="header-right">
+                <span class="material-icons-outlined">notifications_active</span>
+                <span class="material-icons-outlined">mark_email_unread</span>
+                <span class="material-icons-outlined">account_circle</span>
+            </div>
+        </header>
 
-                <ul class="sidebar-list">
-                    <li class="sidebar-list-item">
-                        <span style="color: #30a2a0" class="material-icons-outlined">dashboard</span> Dashboard
-                    </li>
-                    <li class="sidebar-list-item">
-                        <span style="color: #30a2a0" class="material-icons-outlined">inventory_2</span> Estoque
-                    </li>
-                    <li class="sidebar-list-item">
-                        <span style="color: #30a2a0" class="material-icons-outlined">category</span> Categorias
-                    </li>
-                    <li class="sidebar-list-item">
-                        <span style="color: #30a2a0" class="material-icons-outlined">fact_check</span> Relatórios
-                    </li>
-                    <li class="sidebar-list-item">
-                        <span style="color: #30a2a0" class="material-icons-outlined">account_balance_wallet</span>
-                        Finanças
-                    </li>
-                    <li class="sidebar-list-item">
-                        <span style="color: #30a2a0" class="material-icons-outlined">settings</span> Configurações
-                    </li>
-                </ul>
-            </aside>
+        <aside id="sidebar">
+            <div class="sidebar-title">
+                <div class="sidebar-brand">
+                    <span style="color: #30a2a0" class="material-icons-outlined">shopping_bag</span>
+                    <span style="color: #0a8f8d">TECHZONE</span>
+                </div>
+                <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
+            </div>
 
-            <main class="main-container">
+            <ul class="sidebar-list">
+                <li>
+                    <button class="sidebar-list-item active" data-target="dashboard"><span style="color: #30a2a0"
+                            class="material-icons-outlined">dashboard</span> Dashboard</button>
+                </li>
+                <li>
+                    <button class="sidebar-list-item" data-target="estoque"><span style="color: #30a2a0"
+                            class="material-icons-outlined">inventory_2</span> Estoque</button>
+                </li>
+                <li>
+                    <button class="sidebar-list-item" data-target="categorias"><span style="color: #30a2a0"
+                            class="material-icons-outlined">category</span> Categorias</button>
+                </li>
+                <li>
+                    <button class="sidebar-list-item" data-target="relatorios"><span style="color: #30a2a0"
+                            class="material-icons-outlined">fact_check</span> Relatórios</button>
+                </li>
+                <li>
+                    <button class="sidebar-list-item" data-target="financas"><span style="color: #30a2a0"
+                            class="material-icons-outlined">account_balance_wallet</span> Finanças</button>
+                </li>
+                <li>
+                    <button class="sidebar-list-item" data-target="configuracoes"><span style="color: #30a2a0"
+                            class="material-icons-outlined">settings</span> Configurações</button>
+                </li>
+            </ul>
+        </aside>
+
+        <main class="main-container">
+            <!--Aqui fica o conteúdo do Dashboard-->
+            <section id="dashboard" class="tab-content active">
                 <div class="main-title">
                     <h2 style="color: #8da6a6">Radar de Vendas</h2>
                 </div>
-
                 <div class="main-cards">
                     <div class="card">
                         <div class="card-inner">
                             <h3>PRODUTOS</h3>
                             <span class="material-icons-outlined">inventory_2</span>
                         </div>
-                        <h1>200</h1>
+                        <h1>15</h1>
                     </div>
-
                     <div class="card">
                         <div class="card-inner">
                             <h3>CATEGORIAS</h3>
                             <span class="material-icons-outlined">category</span>
                         </div>
-                        <h1>20</h1>
+                        <h1>5</h1>
                     </div>
-
                     <div class="card">
                         <div class="card-inner">
                             <h3>RELATÓRIOS</h3>
                             <span class="material-icons-outlined">fact_check</span>
                         </div>
-                        <h1>10</h1>
+                        <h1>7</h1>
                     </div>
-
                     <div class="card">
                         <div class="card-inner">
                             <h3>NOTIFICAÇÕES</h3>
                             <span class="material-icons-outlined">notifications</span>
                         </div>
-                        <h1>20</h1>
+                        <h1>10</h1>
                     </div>
                 </div>
-
                 <div class="charts">
                     <div class="charts-card">
                         <div id="bar-chart"></div>
                     </div>
-
                     <div class="charts-card">
                         <div id="area-chart"></div>
                     </div>
                 </div>
-            </main>
-        </div>
+            </section>
 
-        <!--Adicionando o script apexcharts -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/7.8.0/apexcharts.min.js"></script>
-        <!--Adicionando o script -->
-        <script src="js/script.js"></script>
-    </body>
+            <!-- Estoque Encorpado -->
+            <section id="estoque" class="tab-content">
+                <div class="main-title">
+                    <div>
+                        <h2 style="color: #8da6a6">Estoque de Vendas</h2>
+                        <p>Monitore os produtos, níveis de quantidade e reposição em tempo real.</p>
+                    </div>
+                    <div class="estoque-acoes">
+                        <span class="badge sucesso">Total Cadastrado: 15 itens</span>
+                    </div>
+                </div>
+
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="/img/teclado-rgb_.jpg" alt="Teclado" class="product-img">
+                        <div class="product-info">
+                            <span class="product-tag">Periféricos</span>
+                            <h3 class="product-name">Teclado Mecânico RGB</h3>
+                            <div class="product-details">
+                                <span class="status-sim">Em estoque: Sim</span>
+                                <span>Qtd: 12</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="/img/mouse-sem-fio.jpg" alt="Mouse" class="product-img">
+                        <div class="product-info">
+                            <span class="product-tag">Periféricos</span>
+                            <h3 class="product-name">Mouse Gamer sem fio</h3>
+                            <div class="product-details">
+                                <span class="status-sim">Em estoque: Sim</span>
+                                <span>Qtd: 25</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="/img/headset-surrond.jpg" alt="Headset" class="product-img">
+                        <div class="product-info">
+                            <span class="product-tag">Áudio</span>
+                            <h3 class="product-name">Headset Surround 7.1</h3>
+                            <div class="product-details">
+                                <span class="status-nao">Em estoque: Não</span>
+                                <span>Qtd: 0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="/img/monitor-ultra.jpg" alt="Monitor" class="product-img">
+                        <div class="product-info">
+                            <span class="product-tag">Hardware</span>
+                            <h3 class="product-name">Monitor Ultrawide 29</h3>
+                            <div class="product-details">
+                                <span class="status-sim">Em estoque: Sim</span>
+                                <span>Qtd: 5</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="/img/cadeira-gamer.jpg" alt="Cadeira" class="product-img">
+                        <div class="product-info">
+                            <span class="product-tag">Mobiliário</span>
+                            <h3 class="product-name">Cadeira Gamer Ergonômica</h3>
+                            <div class="product-details">
+                                <span class="status-sim">Em estoque: Sim</span>
+                                <span>Qtd: 8</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="/img/mousepad.jpg" alt="Mousepad" class="product-img">
+                        <div class="product-info">
+                            <span class="product-tag">Periféricos</span>
+                            <h3 class="product-name">Mousepad Grande Speed</h3>
+                            <div class="product-details">
+                                <span class="status-sim">Em estoque: Sim</span>
+                                <span>Qtd: 20</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="/img/webcam-full.jpg" alt="Webcam" class="product-img">
+                        <div class="product-info">
+                            <span class="product-tag">Periféricos</span>
+                            <h3 class="product-name">Webcam Full HD 1080p</h3>
+                            <div class="product-details">
+                                <span class="status-nao">Em estoque: Não</span>
+                                <span>Qtd: 0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="/img/microfone-condensador.jpg" alt="Microfone" class="product-img">
+                        <div class="product-info">
+                            <span class="product-tag">Áudio</span>
+                            <h3 class="product-name">Microfone Condensador</h3>
+                            <div class="product-details">
+                                <span class="status-sim">Em estoque: Sim</span>
+                                <span>Qtd: 12</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="/img/rtx-4060.jpg" alt="Placa de Vídeo" class="product-img">
+                        <div class="product-info">
+                            <span class="product-tag">Hardware</span>
+                            <h3 class="product-name">Placa de Vídeo RTX 4060</h3>
+                            <div class="product-details">
+                                <span class="status-sim">Em estoque: Sim</span>
+                                <span>Qtd: 4</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="/img/processador.jpg" alt="Processador" class="product-img">
+                        <div class="product-info">
+                            <span class="product-tag">Hardware</span>
+                            <h3 class="product-name">Processador Ryzen 5 5600</h3>
+                            <div class="product-details">
+                                <span class="status-sim">Em estoque: Sim</span>
+                                <span>Qtd: 18</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="/img/memoria-ram.jpg" alt="Memória RAM" class="product-img">
+                        <div class="product-info">
+                            <span class="product-tag">Hardware</span>
+                            <h3 class="product-name">Memória RAM 16GB 3200MHz</h3>
+                            <div class="product-details">
+                                <span class="status-sim">Em estoque: Sim</span>
+                                <span>Qtd: 35</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="/img/ssd.jpg" alt="SSD" class="product-img">
+                        <div class="product-info">
+                            <span class="product-tag">Hardware</span>
+                            <h3 class="product-name">SSD NVMe M.2 1TB</h3>
+                            <div class="product-details">
+                                <span class="status-sim">Em estoque: Sim</span>
+                                <span>Qtd: 26</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="/img/fonte-650w.jpg" alt="Fonte" class="product-img">
+                        <div class="product-info">
+                            <span class="product-tag">Hardware</span>
+                            <h3 class="product-name">Fonte 650W 80 Plus Bronze</h3>
+                            <div class="product-details">
+                                <span class="status-nao">Em estoque: Não</span>
+                                <span>Qtd: 0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="/img/gabinete.jpg" alt="Gabinete" class="product-img">
+                        <div class="product-info">
+                            <span class="product-tag">Hardware</span>
+                            <h3 class="product-name">Gabinete Gamer Vidro Temperado</h3>
+                            <div class="product-details">
+                                <span class="status-sim">Em estoque: Sim</span>
+                                <span>Qtd: 7</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="/img/kit-cooler.jpg" alt="Cooler" class="product-img">
+                        <div class="product-info">
+                            <span class="product-tag">Hardware</span>
+                            <h3 class="product-name">Kit Cooler Fan RGB (3 un)</h3>
+                            <div class="product-details">
+                                <span class="status-sim">Em estoque: Sim</span>
+                                <span>Qtd: 15</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Categorias Encorpadass -->
+            <section id="categorias" class="tab-content">
+                <div class="main-title">
+                    <div>
+                        <h2 style="color: #8da6a6">Categorias</h2>
+                        <p>Organize seus itens por departamentos e tags estruturadas.</p>
+                    </div>
+                </div>
+                <div class="categories-grid">
+                    <div class="categories-card">
+                        <span class="material-icons-outlined">desktop_windows</span>
+                        <h3>Hardware</h3>
+                        <p class="cat-desc">Componentes centrais de alto desempenho para montagem de PCs.</p>
+                        <span class="cat-count">7 itens vinculados</span>
+                    </div>
+                    <div class="categories-card">
+                        <span class="material-icons-outlined">keyboard</span>
+                        <h3>Periféricos</h3>
+                        <p class="cat-desc">Acessórios de precisão e conforto para produtividade e jogos.</p>
+                        <span class="cat-count">5 itens vinculados</span>
+                    </div>
+                    <div class="categories-card">
+                        <span class="material-icons-outlined">headphones</span>
+                        <h3>Áudio</h3>
+                        <p class="cat-desc">Equipamentos de captação e reprodução sonora imersiva.</p>
+                        <span class="cat-count">2 itens vinculados</span>
+                    </div>
+                    <div class="categories-card">
+                        <span class="material-icons-outlined">chair</span>
+                        <h3>Mobiliário</h3>
+                        <p class="cat-desc">Conforto ergonômico para longas jornadas de trabalho.</p>
+                        <span class="cat-count">1 item vinculado</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Relatórios Encorpados (Mais meses) -->
+            <section id="relatorios" class="tab-content">
+                <div class="main-title">
+                    <div>
+                        <h2 style="color: #8da6a6">Relatórios</h2>
+                        <p>Histórico completo de desempenho financeiro e fechamentos mensais.</p>
+                    </div>
+                </div>
+                <div class="tabela-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Referência</th>
+                                <th>Tipo</th>
+                                <th>Volume de Vendas</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Outubro / 2026</td>
+                                <td>Fechamento Mensal</td>
+                                <td>R$ 42.500,00</td>
+                                <td><span class="badge sucesso">Concluído</span></td>
+                            </tr>
+                            <tr>
+                                <td>Setembro / 2026</td>
+                                <td>Fechamento Mensal</td>
+                                <td>R$ 38.900,00</td>
+                                <td><span class="badge sucesso">Concluído</span></td>
+                            </tr>
+                            <tr>
+                                <td>Agosto / 2026</td>
+                                <td>Fechamento Mensal</td>
+                                <td>R$ 45.120,00</td>
+                                <td><span class="badge sucesso">Concluído</span></td>
+                            </tr>
+                            <tr>
+                                <td>Julho / 2026</td>
+                                <td>Fechamento Mensal</td>
+                                <td>R$ 39.400,00</td>
+                                <td><span class="badge sucesso">Concluído</span></td>
+                            </tr>
+                            <tr>
+                                <td>Junho / 2026</td>
+                                <td>Fechamento Mensal</td>
+                                <td>R$ 51.200,00</td>
+                                <td><span class="badge sucesso">Concluído</span></td>
+                            </tr>
+                            <tr>
+                                <td>Maio / 2026</td>
+                                <td>Fechamento Mensal</td>
+                                <td>R$ 36.800,00</td>
+                                <td><span class="badge sucesso">Concluído</span></td>
+                            </tr>
+                            <tr>
+                                <td>Abril / 2026</td>
+                                <td>Fechamento Mensal</td>
+                                <td>R$ 40.150,00</td>
+                                <td><span class="badge sucesso">Concluído</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Finanças Encorpadas (Mais dados de caixa) -->
+            <section id="financas" class="tab-content">
+                <div class="main-title">
+                    <div>
+                        <h2 style="color: #8da6a6">Finanças</h2>
+                        <p>Fluxo de caixa detalhado, entradas e saídas recentes do negócio.</p>
+                    </div>
+                </div>
+                <div class="tabela-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Transação</th>
+                                <th>Data</th>
+                                <th>Valor</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Venda Loja Física #1043</td>
+                                <td>11/10/2026</td>
+                                <td style="color: #4ade80;">+ R$ 2.100,00</td>
+                                <td><span class="badge sucesso">Pago</span></td>
+                            </tr>
+                            <tr>
+                                <td>Venda E-commerce #1042</td>
+                                <td>10/10/2026</td>
+                                <td style="color: #4ade80;">+ R$ 850,00</td>
+                                <td><span class="badge sucesso">Pago</span></td>
+                            </tr>
+                            <tr>
+                                <td>Pagamento de Fornecedor (Periféricos)</td>
+                                <td>09/10/2026</td>
+                                <td style="color: #f87171;">- R$ 3.400,00</td>
+                                <td><span class="badge sucesso">Pago</span></td>
+                            </tr>
+                            <tr>
+                                <td>Venda E-commerce #1041</td>
+                                <td>08/10/2026</td>
+                                <td style="color: #4ade80;">+ R$ 480,00</td>
+                                <td><span class="badge sucesso">Pago</span></td>
+                            </tr>
+                            <tr>
+                                <td>Manutenção de Equipamentos</td>
+                                <td>05/10/2026</td>
+                                <td style="color: #f87171;">- R$ 600,00</td>
+                                <td><span class="badge sucesso">Pago</span></td>
+                            </tr>
+                            <tr>
+                                <td>Venda Loja Física #1040</td>
+                                <td>03/10/2026</td>
+                                <td style="color: #4ade80;">+ R$ 1.500,00</td>
+                                <td><span class="badge sucesso">Pago</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Configurações Encorpadas (Mais opções de customização) -->
+            <section id="configuracoes" class="tab-content">
+                <div class="main-title">
+                    <div>
+                        <h2 style="color: #8da6a6">Configurações</h2>
+                        <p>Ajustes de perfil, tema claro/escuro e preferências avançadas do sistema.</p>
+                    </div>
+                </div>
+                <div class="config-box">
+                    <div class="config-group">
+                        <label>Modo Escuro Ativo</label>
+                        <div class="toggle-switch active" id="config-modo-escuro"></div>
+                    </div>
+                    <div class="config-group">
+                        <label>Notificações Sonoras de Vendas</label>
+                        <div class="toggle-switch"></div>
+                    </div>
+                    <div class="config-group">
+                        <label>Atualização Automática de Dados</label>
+                        <div class="toggle-switch"></div>
+                    </div>
+                    <div class="config-group">
+                        <label>Alertas de Estoque Baixo por E-mail</label>
+                        <div class="toggle-switch"></div>
+                    </div>
+                    <div class="config-group">
+                        <label>Modo de Exibição Compacta em Tabelas</label>
+                        <div class="toggle-switch"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+    </div>
+
+    <!--Adicionando o script apexcharts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/7.8.0/apexcharts.min.js"></script>
+    <!--Adicionando o script -->
+    <script src="js/script.js"></script>
+</body>
+
 </html>

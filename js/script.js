@@ -15,9 +15,47 @@ function closeSidebar() {
     }
 }
 
-// Configuração inicial do tema
+document.addEventListener("DOMContentLoaded", () => {
+    const menuButtons = document.querySelectorAll(".sidebar-list-item");
+    const tabContents = document.querySelectorAll(".tab-content");
+
+    menuButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            menuButtons.forEach(btn => btn.classList.remove("active"));
+            button.classList.add("active");
+            const targetId = button.getAttribute("data-target");
+            tabContents.forEach(tab => tab.classList.remove("active"));
+            const targetTab = document.getElementById(targetId);
+            if (targetTab) {
+                targetTab.classList.add("active");
+            }
+            if (window.matchMedia("(max-width: 1100px)").matches) {
+                closeSidebar();
+            }
+        });
+    });
+
+    const configModoEscuro = document.getElementById("config-modo-escuro");
+    const todosToggles = document.querySelectorAll(".toggle-switch");
+
+    todosToggles.forEach(toggle => {
+        toggle.addEventListener("click", () => {
+            if (toggle !== configModoEscuro) {
+                toggle.classList.toggle("active");
+            }
+        });
+    });
+});
+
+document.addEventListener("keydown", event => {
+    if (event.key === "Escape") {
+        closeSidebar();
+    }
+});
+
 const themeToggle = document.getElementById("theme-toggle");
 const themeIcon = themeToggle?.querySelector(".material-icons-outlined");
+const configModoEscuro = document.getElementById("config-modo-escuro");
 const savedTheme = localStorage.getItem("theme") || "dark";
 
 document.body.classList.toggle("light-theme", savedTheme === "light");
@@ -86,7 +124,7 @@ const barOptions = {
 const barChart = new ApexCharts(document.querySelector("#bar-chart"), barOptions);
 barChart.render();
 
-// Gráfico de área
+// Gráfico de área 2
 const areaChartOptions = {
     series: [
         {
@@ -173,24 +211,45 @@ function updateChartsTheme() {
     });
 }
 
-// Alternância entre modo claro e escuro
-if (themeToggle && themeIcon) {
-    function applyTheme(theme) {
-        const isLight = theme === "light";
+function applyTheme(theme) {
+    const isLight = theme === "light";
 
-        document.body.classList.toggle("light-theme", isLight);
+    document.body.classList.toggle("light-theme", isLight);
+    
+    if (themeIcon) {
         themeIcon.textContent = isLight ? "dark_mode" : "light_mode";
+    }
+    
+    if (themeToggle) {
         themeToggle.setAttribute(
             "aria-label",
             isLight ? "Ativar modo escuro" : "Ativar modo claro"
         );
-        localStorage.setItem("theme", theme);
-        updateChartsTheme();
     }
 
-    applyTheme(savedTheme);
+    if (configModoEscuro) {
+        if (isLight) {
+            configModoEscuro.classList.remove("active");
+        } else {
+            configModoEscuro.classList.add("active");
+        }
+    }
 
+    localStorage.setItem("theme", theme);
+    updateChartsTheme();
+}
+
+applyTheme(savedTheme);
+
+if (themeToggle) {
     themeToggle.addEventListener("click", () => {
+        const isLight = document.body.classList.contains("light-theme");
+        applyTheme(isLight ? "dark" : "light");
+    });
+}
+
+if (configModoEscuro) {
+    configModoEscuro.addEventListener("click", () => {
         const isLight = document.body.classList.contains("light-theme");
         applyTheme(isLight ? "dark" : "light");
     });
